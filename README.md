@@ -1,4 +1,4 @@
-# CustomHeaderZ - ustom Headers Manager for Burp Suite
+# CustomHeaderZ - Custom Headers Manager for Burp Suite
 
 A Burp Suite extension that allows you to easily add, manage, and persist custom HTTP headers for all your requests w00t.
 
