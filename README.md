@@ -16,7 +16,7 @@ A Burp Suite extension that allows you to easily add, manage, and persist custom
 
 ## Installation
 
-1. [Download the compiled JAR file]([https://github.com/falasi/CustomHeaderZ/releases/](https://github.com/falasi/CustomHeaderZ/blob/main/out/artifacts/addcustomheaderz_jar/AddCustomHeaderZ.jar)
+1. (Download the compiled JAR file)[[https://github.com/falasi/CustomHeaderZ/releases/](https://github.com/falasi/CustomHeaderZ/blob/main/out/artifacts/addcustomheaderz_jar/AddCustomHeaderZ.jar]
 2. Open Burp Suite
 3. Go to Extensions tab
 4. Click "Add" button
