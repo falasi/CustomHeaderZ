@@ -3,7 +3,7 @@
 A Burp Suite extension that allows you to easily add, manage, and persist custom HTTP headers for all your requests w00t.
 
 
-![Custom Headers Manager Demo](https://via.placeholder.com/800x400?text=Custom+Headers+Manager)
+![Custom Headers Manager Demo](https://github.com/falasi/CustomHeaderZ/blob/main/Demo/demo.gif)
 
 ## Features
 
