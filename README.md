@@ -10,7 +10,7 @@ Built on Burp Suite's modern Montoya API, this extension is the successor to the
 
 - **Multiple Header Support**: Unlike its predecessor, CustomHeaderZ lets you configure and manage multiple headers simultaneously
 - **Modern Architecture**: Built on Burp Suite's latest Montoya API for improved performance and stability
-- **Session Token Handling**: Perfect for handling JWT tokens, CSRF tokens, and other authentication/session mechanisms
+- **Session Token Handling**: Perfect for handling JWT tokens, and other authentication/session mechanisms
 - **Intuitive Interface**: Color-coded, easy-to-use UI that integrates seamlessly with Burp Suite
 
 ## Demo
