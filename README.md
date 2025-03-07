@@ -1,96 +1,132 @@
 # CustomHeaderZ
 
-AddCustomHeaderZ is a Burp Suite extension that helps penetration testers and web security professionals customize HTTP requests by adding custom headers. It supports both static header injection and dynamic header extraction from macro responses.
+## A Powerful Custom Header Manager for Burp Suite
 
-![Custom Headers Manager Demo](https://github.com/falasi/CustomHeaderZ/blob/main/Demo/demo.gif)
+CustomHeaderZ is a comprehensive Burp Suite extension that enhances your web testing capabilities by allowing you to inject, manage, and dynamically update HTTP headers with precision and flexibility.
 
-## Overview
+Built on Burp Suite's modern Montoya API, this extension is the successor to the popular [AddCustomHeader](https://github.com/PortSwigger/add-custom-header) extension, offering advanced features for security professionals.
 
-CustomHeaderZ lets you:
-- **Inject Static Headers:** Automatically add user-defined HTTP headers to outgoing requests.
-- **Extract Dynamic Values:** Configure headers to extract dynamic values (like tokens) from macro responses using regex or simple string matching.
-- **Configure with Ease:** Manage header settings through an intuitive Swing-based UI integrated directly into Burp Suite.
-- **Session Handling Integration:** Update request headers on the fly as part of Burp’s session handling actions.
+## Why Use CustomHeaderZ?
 
-## Features
+- **Multiple Header Support**: Unlike its predecessor, CustomHeaderZ lets you configure and manage multiple headers simultaneously
+- **Modern Architecture**: Built on Burp Suite's latest Montoya API for improved performance and stability
+- **Session Token Handling**: Perfect for handling JWT tokens, CSRF tokens, and other authentication/session mechanisms
+- **Intuitive Interface**: Color-coded, easy-to-use UI that integrates seamlessly with Burp Suite
 
-- **Static Header:**  
-  Automatically add headers with fixed values to your HTTP requests.
+## Demo
+<p align="center">
+  <img src="https://github.com/falasi/CustomHeaderZ/blob/main/Demo/demo.gif" alt="CustomHeaderZ Demo"/>
+</p>
 
-- **Dynamic Header Extraction:**  
-  Mark headers as dynamic to extract values from macro responses, which is useful for handling frequently expiring authorization tokens. Choose between:
-  - **Regex Patterns:** Use capturing groups for precise token extraction.
-  - **Simple String Matching:** Extract text that follows a designated string.
+## Key Features
 
-- **User-Friendly Configuration Panel:**  
-  Easily add, edit, and remove headers. Configure options such as:
-  - Header name and value
-  - Enable/disable status
-  - Dynamic extraction toggle
-  - Row coloring for visual organization
+### 🔹 Flexible Header Management
+- Add up to 10 custom headers with independent enable/disable toggles
+- Organize headers with color coding for visual distinction
+- Easily edit, add, and remove headers through an intuitive interface
+
+### 🔹 Static Header Injection
+- Add permanent headers to every request without modifying your browser or proxy settings
+- Configure once and apply consistently across all tools in Burp Suite
+- Perfect for adding authorization tokens, API keys, or custom identifiers
+
+### 🔹 Dynamic Value Extraction
+- Automatically extract and update tokens from previous responses
+- Support for both regex pattern extraction and simple string matching
+- Integrates with Burp's session handling rules and macros
+- Ideal for handling CSRF tokens, JWT refresh, and other dynamic authentication mechanisms
+
+### 🔹 Visual Organization
+- Color-code different headers for quick visual identification
+- Enable/disable individual headers without removing configuration
+- At-a-glance view of your current header configuration
 
 ## Installation
 
-- [Download the compiled JAR file](https://github.com/falasi/CustomHeaderZ/blob/main/out/artifacts/addcustomheaderz_jar/AddCustomHeaderZ.jar) or build from source.
+### Option 1: Direct Download
+1. [Download the compiled JAR file](https://github.com/falasi/CustomHeaderZ/blob/main/out/artifacts/addcustomheaderz_jar/AddCustomHeaderZ.jar)
+2. In Burp Suite, go to **Extender** → **Extensions** → **Add**
+3. Select the downloaded JAR file
+4. The extension will load with a new **Custom HeaderZ** tab
 
-### Building the Extension
+### Option 2: Build from Source
+1. Clone the repository: `git clone https://github.com/falasi/CustomHeaderZ.git`
+2. Open the project in your Java IDE
+3. Build the project to generate the JAR file
+4. Load the JAR into Burp Suite as described above
 
-1. Clone or download the project repository.
-2. Open the project in your preferred Java IDE.
-3. Build the project to generate a JAR file (e.g., `AddCustomHeaderZ.jar`).
+## Usage Guide
 
-### Loading into Burp Suite
+### Setting Up Headers
 
-1. Open Burp Suite.
-2. Go to the **Extender** tab, then **Extensions**.
-3. Click **Add** and select the JAR file you built.
-4. The extension will load, and you should see a new tab named **Custom HeaderZ** in Burp’s UI.
+1. Navigate to the **Custom HeaderZ** tab in Burp Suite
+2. Use the master toggle to enable/disable the extension functionality
+3. Click **Add Header** to create a new header entry
+4. Configure your header:
+   - **Header Name**: The HTTP header name (e.g., `Authorization`, `X-API-Key`)
+   - **Header Value**: The static value to use (for static headers)
+   - **Enabled**: Toggle to include/exclude this header in requests
+   - **Dynamic**: Check this box if the value should be extracted from responses
 
-## Usage
+### Static vs. Dynamic Headers
 
-### Configuring Headers
+#### Static Headers
+For headers with unchanging values (like API keys):
+1. Enter the header name and value
+2. Leave the **Dynamic** checkbox unchecked
+3. The value will be applied to all requests
 
-1. **Enable/Disable Extension:**  
-   Use the checkbox at the top of the **Custom HeaderZ** tab to turn header injection on or off.
+#### Dynamic Headers
+For headers that need values extracted from responses (like tokens):
+1. Enter the header name
+2. Check the **Dynamic** checkbox
+3. Right-click the header row and select **Set Extraction Pattern...**
+4. Choose between:
+   - **Regex Pattern**: For precise extraction using capture groups
+     - Example: `Authorization:\s*Bearer\s+([A-Za-z0-9._-]+)`
+   - **Simple String**: For straightforward extraction
+     - Example: `"access_token":"`
 
-2. **Managing Headers:**  
-   - **Add Header:** Click the "Add Header" button to insert a new row, then enter the header name and value.
-   - **Static vs. Dynamic:**  
-     - For **static headers**, simply enter the value.
-     - For **dynamic headers**, check the "Dynamic" box so the extension knows to extract the header value from macro responses.
-   - **Edit & Remove:** Use the available buttons to modify or delete header entries.
-   - **Row Coloring:** Right-click on a header row to assign a color for easy identification.
+### Organizing Headers
+- **Color-Coding**: Right-click any header row to assign a color
+- **Reordering**: Use the table to visually organize your headers
+- **Toggle Headers**: Quickly enable/disable headers without removing them
 
-3. **Setting Extraction Patterns:**  
-   For dynamic headers, right-click on the row and choose **Set Extraction Pattern…**. In the dialog:
-   - Pick between **Regex Pattern** or **Simple String**.
-   - Enter the pattern (for example, a regex like `Authorization:\s*Bearer\s+([A-Za-z0-9._-]+)`).
-   - Confirm your settings so the extension uses this pattern when processing macro responses.
+### Setting Up with Macros
 
-### Using with Macros
+For dynamic headers with values that need to be refreshed:
 
-- Set up a macro in Burp Suite that captures responses containing the token or value you need.
-- When the macro runs, the extension will scan the responses using your extraction patterns.
-- Dynamic headers will be updated with the extracted token before the HTTP request is sent.
-
-## Configuration Details
-
-- **Maximum Headers:** You can configure up to 10 headers.
-- **Dynamic Extraction:** Choose between regex-based extraction (with capturing groups) or a simple string search.
-- **Persistence:** Header configurations are saved using Burp’s preferences, so your settings persist between sessions.
+1. Configure a dynamic header with an extraction pattern
+2. In Burp, go to **Project options** → **Sessions**
+3. Under **Session Handling Rules**, add a new rule
+4. In the rule details, add a new **Run a macro** action
+5. Configure the macro to target the authentication endpoint
+6. Add the **CustomHeaderZ Extract Token** action to the rule
+7. Apply the rule scope as needed
 
 ## Troubleshooting
 
-- **Extraction Failures:**  
-  - Make sure the macro responses contain the expected content.
-  - Double-check your extraction pattern syntax.
-- **Headers Not Applied:**  
-  - Verify the extension is enabled in the UI.
-  - Look at the Burp output logs for any error messages.
-- **General Issues:**  
-  - Review the logs for insights into header processing and extraction.
+### Extraction Not Working
+- Verify your macro produces responses containing the expected tokens
+- Check your extraction pattern against the actual response content
+- For regex patterns, ensure capture groups are correctly defined
+- Enable Burp Suite's logging for detailed diagnostic information
 
+### Headers Not Applied
+- Confirm the master toggle is enabled in the CustomHeaderZ tab
+- Check that individual headers are marked as enabled
+- Verify the header isn't being overwritten by another extension
+- Check the scope settings in your session handling rules
+
+### Debugging Tips
+- Right-click on a header row to set its extraction pattern
+- Use Burp's logger (in the Extender tab) to see CustomHeaderZ's output
+- Test your regex patterns with a tool like regex101.com before using them
 
 ## Contributing
 
-Contributions, bug reports, and feature requests are welcome. Feel free to open an issue or submit a pull request on the project repository.
+Contributions to enhance CustomHeaderZ are welcome! Feel free to:
+- Report bugs by opening an issue
+- Suggest new features or improvements
+- Submit pull requests with bug fixes or enhancements
+
